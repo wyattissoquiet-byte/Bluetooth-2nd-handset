@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/accent"
+        android:textSize="14sp"
+        android:text="@string/dialer_title" />
+
+    <TextView
+        android:id="@+id/dial_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:textColor="@color/fg"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text=" " />
+
+    <TextView
+        android:id="@+id/dial_via"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/fg_dim"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_via"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@drawable/btn_focus"
+        android:textColor="@color/fg"
+        android:textSize="14sp"
+        android:focusable="true"
+        android:text="@string/dial_toggle" />
+
+    <Button
+        android:id="@+id/btn_call"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/btn_green"
+        android:textColor="@color/fg"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:focusable="true"
+        android:text="@string/call" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:textColor="@color/fg_dim"
+        android:textSize="10sp"
+        android:text="@string/dialer_hint" />
+</LinearLayout>

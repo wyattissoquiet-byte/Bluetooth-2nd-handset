@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg">#000000</color>
+    <color name="fg">#FFFFFF</color>
+    <color name="fg_dim">#B0B0B0</color>
+    <color name="accent">#FF5722</color>
+    <color name="green">#2E7D32</color>
+    <color name="green_bright">#4CAF50</color>
+    <color name="red">#C62828</color>
+    <color name="red_bright">#F44336</color>
+    <color name="focus">#FFC107</color>
+    <color name="panel">#1A1A1A</color>
+</resources>

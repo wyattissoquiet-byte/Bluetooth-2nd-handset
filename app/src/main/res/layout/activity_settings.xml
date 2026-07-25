@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/fg"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:paddingBottom="6dp"
+            android:text="@string/menu_settings" />
+
+        <CheckBox
+            android:id="@+id/cb_flip_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:textColor="@color/fg"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/btn_focus"
+            android:text="@string/set_flip_answer" />
+
+        <CheckBox
+            android:id="@+id/cb_flip_hangup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:textColor="@color/fg"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/btn_focus"
+            android:text="@string/set_flip_hangup" />
+
+        <CheckBox
+            android:id="@+id/cb_ring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:textColor="@color/fg"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/btn_focus"
+            android:text="@string/set_ring" />
+
+        <CheckBox
+            android:id="@+id/cb_reconnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:textColor="@color/fg"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/btn_focus"
+            android:text="@string/set_reconnect" />
+
+        <CheckBox
+            android:id="@+id/cb_native"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:textColor="@color/fg"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/btn_focus"
+            android:text="@string/set_native" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:textColor="@color/fg_dim"
+            android:textSize="11sp"
+            android:text="@string/set_native_note" />
+    </LinearLayout>
+</ScrollView>

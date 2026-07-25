@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fresno Gateway</string>
+
+    <!-- Main -->
+    <string name="status_disconnected">Not connected</string>
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_slc_ready">Link ready</string>
+    <string name="main_hint">1 Pair  2 Dial  3 Settings  4 Setup\nOK = Connect/Disconnect</string>
+    <string name="menu_pair">1  Pair with phone</string>
+    <string name="menu_dial">2  Dialer</string>
+    <string name="menu_settings">3  Settings</string>
+    <string name="menu_setup">4  Setup wizard</string>
+    <string name="no_device">No host phone selected</string>
+
+    <!-- Setup wizard -->
+    <string name="setup_bt_title">Step 1 of 6: Bluetooth</string>
+    <string name="setup_bt_body">The gateway needs Bluetooth permission to talk to your host phone.\n\nPress OK, then choose Allow.</string>
+    <string name="setup_phone_title">Step 2 of 6: Phone</string>
+    <string name="setup_phone_body">Phone and microphone permissions let this app also place and answer calls on the Fresno\'s own SIM.\n\nPress OK, then choose Allow.</string>
+    <string name="setup_dialer_title">Step 3 of 6: Phone app</string>
+    <string name="setup_dialer_body">Set Fresno Gateway as the default Phone app so it can show the call screen for SIM calls too.\n\nOptional — skip with the Skip button if you prefer the built-in dialer.</string>
+    <string name="setup_overlay_title">Step 4 of 6: Popups</string>
+    <string name="setup_overlay_body">Allow "display over other apps" so the incoming-call screen appears instantly when the host phone rings.\n\nTurn the switch ON, then press Back.</string>
+    <string name="setup_battery_title">Step 5 of 6: Battery</string>
+    <string name="setup_battery_body">Allow the app to ignore battery optimizations so the Bluetooth link stays alive with the flip closed.\n\nChoose Allow.</string>
+    <string name="setup_host_title">Step 6 of 6: Host phone</string>
+    <string name="setup_host_body">First pair your main phone in the Fresno\'s Settings &gt; Connected devices &gt; Bluetooth.\n\nThen press OK to select it as the host.</string>
+    <string name="setup_grant">Grant (OK)</string>
+    <string name="setup_set">Set (OK)</string>
+    <string name="setup_open">Open (OK)</string>
+    <string name="setup_pick">Pick host phone (OK)</string>
+    <string name="setup_skip">Skip this step</string>
+
+    <!-- Incoming call -->
+    <string name="incoming_label">INCOMING CALL</string>
+    <string name="incoming_call">Incoming call</string>
+    <string name="answer">Answer</string>
+    <string name="decline">Decline</string>
+    <string name="incoming_hint">OK/Green = Answer   Red/# = Decline\nOpen flip = Answer (if enabled)</string>
+    <string name="unknown_number">Unknown number</string>
+
+    <!-- In call -->
+    <string name="state_active">IN CALL</string>
+    <string name="state_dialing">CALLING…</string>
+    <string name="mute">Mute</string>
+    <string name="unmute">Unmute</string>
+    <string name="speaker">Speaker</string>
+    <string name="end_call">End call</string>
+    <string name="incall_hint">←=Mute →=Speaker ↑=Audio here\n0-9*# = tones   Red = End</string>
+    <string name="audio_to_fresno">Audio → this phone</string>
+    <string name="audio_to_host">Audio → host phone</string>
+
+    <!-- Dialer -->
+    <string name="dialer_title">Dialer</string>
+    <string name="dialer_hint">Type number, Green/OK = call\n* hold = +   # = delete   → = switch line</string>
+    <string name="dial_toggle">Switch line (→)</string>
+    <string name="dial_via_host">Calling via %s</string>
+    <string name="dial_via_fresno">Calling via Fresno SIM</string>
+    <string name="call">Call</string>
+    <string name="perm_call_missing">Phone permission missing — run Setup</string>
+
+    <!-- Settings -->
+    <string name="set_flip_answer">Answer on flip open</string>
+    <string name="set_flip_hangup">Hang up on flip close</string>
+    <string name="set_ring">Ring on this phone</string>
+    <string name="set_reconnect">Auto-reconnect to host</string>
+    <string name="set_native">Try native HFP audio</string>
+    <string name="set_native_note">Native HFP routes full call audio to this phone, but only works if the firmware enables the Bluetooth HFP-client role. If unavailable, the app falls back to control-only mode (audio stays on the host phone).</string>
+
+    <!-- Notifications -->
+    <string name="notif_channel_gateway">Gateway link</string>
+    <string name="notif_channel_calls">Gateway calls</string>
+    <string name="notif_connected">Connected to %s</string>
+    <string name="notif_idle">Gateway idle</string>
+
+    <!-- Picker -->
+    <string name="picker_title">Select host phone</string>
+    <string name="picker_hint">Pair first in Bluetooth settings.\nOK = select</string>
+    <string name="picker_empty">No paired devices.\nPair the host phone in\nSettings &gt; Bluetooth first.</string>
+</resources>

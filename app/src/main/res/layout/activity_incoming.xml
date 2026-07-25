@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/accent"
+        android:textSize="14sp"
+        android:text="@string/incoming_label" />
+
+    <TextView
+        android:id="@+id/caller_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@color/fg"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="@string/incoming_call" />
+
+    <TextView
+        android:id="@+id/caller_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/fg_dim"
+        android:textSize="17sp"
+        android:text="@string/unknown_number" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_answer"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/btn_green"
+        android:textColor="@color/fg"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:focusable="true"
+        android:text="@string/answer" />
+
+    <Button
+        android:id="@+id/btn_decline"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/btn_red"
+        android:textColor="@color/fg"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:focusable="true"
+        android:text="@string/decline" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:textColor="@color/fg_dim"
+        android:textSize="11sp"
+        android:text="@string/incoming_hint" />
+</LinearLayout>
