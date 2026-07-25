@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.bluetooth.BluetoothManager
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.KeyEvent
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
@@ -17,7 +18,12 @@ import com.fresno.gateway.util.Prefs
 
 /**
  * Lists devices already paired in the system Bluetooth settings and lets
- * the user pick which one is the "host" phone. D-pad up/down + OK.
+ * the user pick which one is the "host" phone.
+ *
+ * Navigation: D-pad up/down moves the highlight, OK/Enter/green call key
+ * selects, and digits 1-9 jump-select the Nth device directly. Selection
+ * is handled in [onKeyDown] as well as via the item-click listener so it
+ * works reliably on non-touch keypad devices.
  */
 class DevicePickerActivity : AppCompatActivity() {
 
@@ -25,12 +31,15 @@ class DevicePickerActivity : AppCompatActivity() {
         override fun toString(): String = name
     }
 
+    private lateinit var list: ListView
+    private var bonded: List<Entry> = emptyList()
+
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_picker)
 
-        val list = findViewById<ListView>(R.id.device_list)
+        list = findViewById(R.id.device_list)
         val empty = findViewById<TextView>(R.id.empty_text)
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)
@@ -41,7 +50,7 @@ class DevicePickerActivity : AppCompatActivity() {
         }
 
         val adapter = (getSystemService(BLUETOOTH_SERVICE) as BluetoothManager).adapter
-        val bonded = adapter?.bondedDevices.orEmpty()
+        bonded = adapter?.bondedDevices.orEmpty()
             .map { Entry(it.name ?: it.address, it.address) }
             .sortedBy { it.name }
 
@@ -51,14 +60,51 @@ class DevicePickerActivity : AppCompatActivity() {
         }
         empty.text = getString(R.string.picker_hint)
 
-        list.adapter = ArrayAdapter(this, R.layout.item_device, bonded)
-        list.setOnItemClickListener { _, _, pos, _ ->
-            val e = bonded[pos]
-            Prefs.setHost(this, e.address, e.name)
-            Toast.makeText(this, "Host: ${e.name}", Toast.LENGTH_SHORT).show()
-            HfpGatewayService.command(this, HfpGatewayService.ACTION_CONNECT)
-            finish()
+        // Number the entries so digit keys can jump-select.
+        val labels = bonded.mapIndexed { i, e -> "${i + 1}  ${e.name}" }
+        list.adapter = ArrayAdapter(this, R.layout.item_device, labels)
+        list.choiceMode = ListView.CHOICE_MODE_SINGLE
+        list.isFocusable = true
+        list.isFocusableInTouchMode = true
+        list.itemsCanFocus = false
+        list.setSelector(R.drawable.list_selector)
+        list.setOnItemClickListener { _, _, pos, _ -> choose(pos) }
+        list.post {
+            list.requestFocus()
+            list.setSelection(0)
         }
-        list.requestFocus()
+    }
+
+    private fun choose(pos: Int) {
+        val e = bonded.getOrNull(pos) ?: return
+        Prefs.setHost(this, e.address, e.name)
+        Toast.makeText(this, "Host: ${e.name}", Toast.LENGTH_SHORT).show()
+        HfpGatewayService.command(this, HfpGatewayService.ACTION_CONNECT)
+        finish()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        when (keyCode) {
+            KeyEvent.KEYCODE_DPAD_CENTER,
+            KeyEvent.KEYCODE_ENTER,
+            KeyEvent.KEYCODE_NUMPAD_ENTER,
+            KeyEvent.KEYCODE_CALL -> {
+                val pos = if (list.selectedItemPosition != ListView.INVALID_POSITION) {
+                    list.selectedItemPosition
+                } else {
+                    0
+                }
+                choose(pos)
+                return true
+            }
+            in KeyEvent.KEYCODE_1..KeyEvent.KEYCODE_9 -> {
+                val idx = keyCode - KeyEvent.KEYCODE_1
+                if (idx < bonded.size) {
+                    choose(idx)
+                    return true
+                }
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }
