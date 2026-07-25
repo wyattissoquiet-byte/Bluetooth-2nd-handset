@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
     private fun openDialer() = startActivity(Intent(this, DialerActivity::class.java))
     private fun openSettings() = startActivity(Intent(this, SettingsActivity::class.java))
     private fun openSetup() = startActivity(Intent(this, SetupActivity::class.java))
+    private fun openDiagnostics() = startActivity(Intent(this, DiagnosticsActivity::class.java))
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         when (keyCode) {
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             KeyEvent.KEYCODE_2 -> { openDialer(); return true }
             KeyEvent.KEYCODE_3 -> { openSettings(); return true }
             KeyEvent.KEYCODE_4 -> { openSetup(); return true }
+            KeyEvent.KEYCODE_5 -> { openDiagnostics(); return true }
             KeyEvent.KEYCODE_CALL -> { openDialer(); return true }
         }
         return super.onKeyDown(keyCode, event)

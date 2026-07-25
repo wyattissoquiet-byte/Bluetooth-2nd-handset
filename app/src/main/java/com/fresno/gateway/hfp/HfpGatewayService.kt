@@ -248,11 +248,21 @@ class HfpGatewayService : Service(), HfpAtEngine.Listener {
 
     // ---------------- Flip gestures ----------------
 
+    /** elapsedRealtime when the current incoming ring started; 0 when idle. */
+    private var ringStartedAt = 0L
+
     private fun onFlipOpened() {
-        if (status.call == RemoteCallState.INCOMING && Prefs.flipAnswer(this)) {
-            Log.i(TAG, "Flip opened during ring -> answering")
-            answer()
+        if (status.call != RemoteCallState.INCOMING || !Prefs.flipAnswer(this)) return
+        val fs = flipSensor ?: return
+        // Only answer on a genuine flip-open transition that happened AFTER
+        // ringing began. A stale or self-caused signal (screen wake) that
+        // predates the ring must never answer a call.
+        if (ringStartedAt == 0L || fs.lastOpenAt < ringStartedAt) {
+            Log.i(TAG, "Flip-open ignored: transition predates ring")
+            return
         }
+        Log.i(TAG, "Flip opened during ring -> answering")
+        answer()
     }
 
     private fun onFlipClosed() {
@@ -341,6 +351,10 @@ class HfpGatewayService : Service(), HfpAtEngine.Listener {
     // ---------------- Ringer ----------------
 
     private fun startRinging() {
+        if (ringStartedAt == 0L) ringStartedAt = android.os.SystemClock.elapsedRealtime()
+        // The wake-up below turns the screen on; make sure the flip sensor's
+        // screen-event fallback never mistakes it for the lid opening.
+        flipSensor?.suppressScreenSignals(8000L)
         if (!Prefs.ringFresno(this)) return
         if (ringtone?.isPlaying == true) return
         acquireWakeLock()
@@ -359,6 +373,7 @@ class HfpGatewayService : Service(), HfpAtEngine.Listener {
     }
 
     private fun stopRinging() {
+        ringStartedAt = 0L
         ringtone?.stop()
         ringtone = null
         vibrator?.cancel()
@@ -368,6 +383,9 @@ class HfpGatewayService : Service(), HfpAtEngine.Listener {
     // ---------------- UI plumbing ----------------
 
     private fun showIncomingUi() {
+        // Launching the full-screen UI wakes the screen; suppress the flip
+        // sensor's screen-event fallback so this is not read as flip-open.
+        flipSensor?.suppressScreenSignals(8000L)
         val i = Intent(this, IncomingCallActivity::class.java)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(i)

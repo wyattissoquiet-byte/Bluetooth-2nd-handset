@@ -113,6 +113,11 @@
             android:name=".ui.SettingsActivity"
             android:exported="false" />
 
+        <!-- Diagnostics -->
+        <activity
+            android:name=".ui.DiagnosticsActivity"
+            android:exported="false" />
+
         <!-- InCallService: makes this app eligible as Default Phone app for
              the Fresno's own SIM calls -->
         <service

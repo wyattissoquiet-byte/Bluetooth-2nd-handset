@@ -7,7 +7,7 @@
     <string name="status_connecting">Connecting…</string>
     <string name="status_connected">Connected</string>
     <string name="status_slc_ready">Link ready</string>
-    <string name="main_hint">1 Pair  2 Dial  3 Settings  4 Setup\nOK = Connect/Disconnect</string>
+    <string name="main_hint">1 Pair  2 Dial  3 Settings  4 Setup\n5 Diagnostics   OK = Connect/Disc.</string>
     <string name="menu_pair">1  Pair with phone</string>
     <string name="menu_dial">2  Dialer</string>
     <string name="menu_settings">3  Settings</string>
@@ -74,6 +74,10 @@
     <string name="notif_channel_calls">Gateway calls</string>
     <string name="notif_connected">Connected to %s</string>
     <string name="notif_idle">Gateway idle</string>
+
+    <!-- Diagnostics -->
+    <string name="diag_running">Running diagnostics…</string>
+    <string name="menu_diag">5  Diagnostics</string>
 
     <!-- Picker -->
     <string name="picker_title">Select host phone</string>
